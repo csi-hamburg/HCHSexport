@@ -152,7 +152,6 @@ fi
 ## end pseudonym precheck ##
 
 
-exit
 
 echo $OUT_DIR
 if [ -z ${OUT_DIR+x} ]; then
