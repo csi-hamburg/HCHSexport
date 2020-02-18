@@ -227,8 +227,11 @@ for subj in "$IN_DIR"/*; do
 	## HCHS_ID_HASH=$(echo ${SALT}${HCHS_ID} | sha256sum | head -c 8)
 	HCHS_ID_HASH=$(cat "$DICTFILE" | awk -F , -v HCHSID="$HCHS_ID" '$2 ~ HCHSID{print $3}')
 	echo $HCHS_ID_HASH
-
-
+	if [ "HCHS_ID_HASH"=="" ]; then
+		echo "No pseudonym found for HCHS_ID [$HCHS_ID] in dictionary [$DICTFILE]"
+	       	exit 1
+	fi	
+	
 	#############################################t#
 	### perform PS 3.15 compliant anonymisation ####
 	################################################
