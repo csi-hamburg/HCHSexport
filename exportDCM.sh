@@ -115,7 +115,7 @@ fi
 
 ## precompute pseudonyms, check for duplicates and save dictionary
 
-DICTFILE=dictionary.dat
+DICTFILE="$IN_DIR"/../DICT.dat
 
 if false; then
 	touch $DICTFILE
