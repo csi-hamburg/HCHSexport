@@ -115,8 +115,8 @@ fi
 
 ## precompute pseudonyms, check for duplicates and save dictionary
 
-if true; then
-	DICTFILE=dictioary.dat
+if false; then
+	DICTFILE=dictionary.dat
 	touch $DICTFILE
 	echo "Orig,HCHS_ID,pseudonym" > $DICTFILE
 	for subj in "$IN_DIR"/*; do
@@ -210,7 +210,7 @@ for subj in "$IN_DIR"/*; do
 
 	echo "Extracting HCHS ID ..."
 	PatientID=$(dcmdump "$FILE" --search "0010,0010" | grep -oP '(?<=\[).*?(?=\])')
-	HCHS_ID=$(echo $PatientID | grep -oP '(?<=65151-)DHCC[0-9]{5}(?=\^HCHS)')
+	HCHS_ID=$(echo $PatientID | grep -oP '(?<=65151-)DHCC[0-9]{5}(?=\^HC)')
 	echo $HCHS_ID
 
 	echo "Extracting date of birth ..."
@@ -223,11 +223,13 @@ for subj in "$IN_DIR"/*; do
 		## Sanitisation dependent on how non-compliant PatientBirthDates actually are
 	fi
 
-	HCHS_ID_HASH=$(echo ${SALT}${HCHS_ID} | sha256sum | head -c 8)
+	## HCHS_ID_HASH=$(echo ${SALT}${HCHS_ID} | sha256sum | head -c 8)
+	HCHS_ID_HASH = $(cat "$DICTFILE" | awk -v HCHSID="$HCHS_ID"'$2 ~ /HCHSID/{print $3}')
 	echo $HCHS_ID_HASH
 
+	exit
 
-	################################################
+	#############################################t#
 	### perform PS 3.15 compliant anonymisation ####
 	################################################
 	if [ -e "$subjwork"/DICOMDIR ]; then rm "$subjwork"/DICOMDIR; fi	# needed for older version of libgdcm-tool
