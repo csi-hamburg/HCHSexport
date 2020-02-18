@@ -228,7 +228,6 @@ for subj in "$IN_DIR"/*; do
 	HCHS_ID_HASH=$(cat "$DICTFILE" | awk -F , -v HCHSID="$HCHS_ID" '$2 ~ HCHSID{print $3}')
 	echo $HCHS_ID_HASH
 
-	exit
 
 	#############################################t#
 	### perform PS 3.15 compliant anonymisation ####
