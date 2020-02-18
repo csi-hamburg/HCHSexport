@@ -115,8 +115,9 @@ fi
 
 ## precompute pseudonyms, check for duplicates and save dictionary
 
+DICTFILE=dictionary.dat
+
 if false; then
-	DICTFILE=dictionary.dat
 	touch $DICTFILE
 	echo "Orig,HCHS_ID,pseudonym" > $DICTFILE
 	for subj in "$IN_DIR"/*; do
