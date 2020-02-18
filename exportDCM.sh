@@ -225,7 +225,7 @@ for subj in "$IN_DIR"/*; do
 	fi
 
 	## HCHS_ID_HASH=$(echo ${SALT}${HCHS_ID} | sha256sum | head -c 8)
-	HCHS_ID_HASH=$(cat "$DICTFILE" | awk -F , -v HCHSID="$HCHS_ID" '$2 ~ HCHSID{print $3}')
+	HCHS_ID_HASH=$(cat "$DICTFILE" | awk -F , -v HCHSID="$HCHS_ID" '$1 ~ HCHSID{print $2}')
 	echo $HCHS_ID_HASH
 	if [ "HCHS_ID_HASH"=="" ]; then
 		echo "No pseudonym found for HCHS_ID [$HCHS_ID] in dictionary [$DICTFILE]"
