@@ -67,6 +67,7 @@
 -(0010,1030) // PatientWeight
 -(0010,1040) // PatientAddress
 -(0010,21c0) // PregnancyStatus
+-(0010,2154) // Patient's Telephone Numbers
 
 
 // (0018,0015) // BodyPartExamined
